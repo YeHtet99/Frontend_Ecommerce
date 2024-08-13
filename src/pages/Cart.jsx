@@ -12,7 +12,7 @@ import { removeFromCart } from '../redux/actions/itemAction'
 import Header from '../components/Header'
 import { getItem } from '../redux/actions/itemAction'
 import { deleteFromCart } from '../api/item'
-export const baseUrl= "http://localhost:8080/"
+import { baseUrl } from '../api/url'
 // import armChair from '../assets/images/arm-chair-01.jpg'
 
 

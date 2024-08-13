@@ -1,6 +1,6 @@
 import { toast } from "react-toastify"
 import { Cookies } from "react-cookie"
-const baseUrl= "http://localhost:8080/"
+import { baseUrl } from "./url"
 // import { toast } from "react-toastify"
 
 export const addItem=async(credentials)=>{

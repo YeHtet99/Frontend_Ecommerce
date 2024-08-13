@@ -5,7 +5,7 @@ import { Cookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import { productDataActions } from '../redux/slices/productDataSlices';
-export const baseUrl= "http://localhost:8080/"
+import { baseUrl } from '../api/url';
 
 
 export default function ProductModal({editData,setEditData}) {

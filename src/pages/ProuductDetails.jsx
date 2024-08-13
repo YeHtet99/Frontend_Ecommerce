@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux'
 import {cartActions} from '../redux/slices/cartSlices'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
-export const baseUrl= "http://localhost:8080/"
+import { baseUrl } from '../api/url'
 
 export default function ProuductDetails() {
   const now_year=new Date().getFullYear()

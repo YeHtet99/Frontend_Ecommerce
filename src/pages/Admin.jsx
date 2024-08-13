@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { productDataActions } from '../redux/slices/productDataSlices'
 import { deleteProduct } from '../api/product';
 import Header from '../components/Header';
-export const baseUrl= "http://localhost:8080/"
+import { baseUrl } from '../api/url';
 
 export default function Admin() {
   // const [products,setProducts] = useState([]);

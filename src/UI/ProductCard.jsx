@@ -7,7 +7,7 @@ import { cartActions } from '../redux/slices/cartSlices'
 import { toast } from 'react-toastify';
 import { useSelector,useDispatch } from 'react-redux'
 import { addItem,getItem } from '../api/item'
-export const baseUrl= "http://localhost:8080/"
+import { baseUrl } from '../api/url'
 // import { addItem } from '../redux/actions/itemAction'
 // import { Toast } from 'react-toastify/dist/components'
 

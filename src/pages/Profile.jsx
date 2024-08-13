@@ -8,7 +8,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import { profile } from '../redux/actions/authActions';
 import { Cookies } from 'react-cookie'
 import FormData from 'form-data'
-import { baseUrl } from '../api/auth'
+import { baseUrl } from '../api/url'
 
 
 export default function Profile() {

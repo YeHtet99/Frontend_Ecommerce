@@ -1,6 +1,6 @@
 import { toast } from "react-toastify"
 import { Cookies } from "react-cookie"
-export const baseUrl= "http://localhost:8080/"
+import { baseUrl } from "./url"
 
 
 export const SignUp=async(username,email,password)=>{
