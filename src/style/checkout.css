@@ -1,0 +1,17 @@
+.billing-card{
+    background-color: #07162e;
+    color: white;
+    border-radius: 10px;
+    height: 330px;
+
+}
+.checkout_btn{
+    padding: 10px 15px;
+    background-color: white;
+    color: #07162e;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.total_cost{
+    border-top: 1px solid white;
+}

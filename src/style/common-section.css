@@ -1,0 +1,18 @@
+.common_section_container{
+    background: linear-gradient(rgba(0,0,0,0.62),rgba(0,0,0,0.62)),url('../assets/images/bedroom.jpg')
+    no-repeat center center;
+    background-size: cover;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.common_section_container h1{
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

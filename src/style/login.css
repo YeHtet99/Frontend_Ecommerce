@@ -1,0 +1,25 @@
+.login{
+    background-color: #07162e;
+    color: white;
+    border-radius: 5px;
+    padding: 30px;
+}
+label{
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+}
+.login_btn{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: white;
+    color: #07162e;
+
+}
+p{
+    color: white;
+    font-weight: 300;
+}
+p a:hover{
+    color: white;
+}

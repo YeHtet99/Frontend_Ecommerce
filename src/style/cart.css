@@ -1,0 +1,17 @@
+.cart_image{
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
+}
+.cart_button{
+    padding: 10px 15px;
+    background-color: #07162e;
+    border: 1px solid #07162e;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+
+}
+.cart_button a:hover{
+    color: white;
+}

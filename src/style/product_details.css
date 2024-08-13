@@ -1,0 +1,58 @@
+.product_details_name{
+    font-weight: bold;
+    font-size: 600;
+    margin-bottom: 10px;
+}
+.product_details_button{
+    padding: 0px 15px;
+    background-color: #07162e;
+    border: 1px solid #07162e;
+    border-radius: 10px;
+    color: white;
+}
+.product_details_star{
+    color: coral;
+}
+.product_details_price{
+    margin-bottom: 10px;
+    font-size: 400;
+}
+.product_details_desc{
+    line-height: 1.7;
+    margin-bottom: 10px;
+    color: black;
+}
+.product_details img{
+    width: 500px;
+}
+.active_tab{
+    font-weight: 600;
+    font-size: 18px;
+}
+.reviews_button{
+    padding: 10px 15px;
+    background-color: #07162e;
+    border: 1px solid #07162e;
+    border-radius: 10px;
+    color: white;
+    
+}
+.text_wrapper h6{
+    cursor: pointer;
+}
+.description,.reviews{
+    cursor: pointer;
+}
+.description_text{
+    line-height: 2;
+    margin: 20px 0px;
+}
+.review_stars span{
+    color:coral;
+    cursor: pointer;
+    
+}
+.review_content{
+    line-height: 2;
+    margin-bottom: 20;
+}

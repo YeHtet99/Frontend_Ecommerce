@@ -1,0 +1,24 @@
+.service_details{
+    display: flex;
+    /* justify-content: space-around; */
+    gap: 10px;
+    /* background-color: red; */
+    padding: 10px;
+    align-items: center;
+    border-radius: 10px;
+}
+.service_details span i{
+
+    font-size: 1.8rem;
+}
+.service_icon{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 50%;
+    color: whitesmoke;
+    
+}
