@@ -74,7 +74,7 @@ export default function Admin() {
                       <th className='text-center' style={{background:'#07162e',color:'white'}}>Image</th>
                       <th className='text-center' style={{background:'#07162e',color:'white'}}>Product Name</th>
                       <th className='text-center' style={{background:'#07162e',color:'white'}}>Price</th>
-                      {/* <th className='text-center' style={{background:'#07162e',color:'white'}}>Action</th> */}
+                      <th className='text-center' style={{background:'#07162e',color:'white'}}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -86,13 +86,13 @@ export default function Admin() {
                           <td style={{textAlign:'center',verticalAlign:'middle'}}><img src={baseUrl+product?.imgUrl} alt="" style={{width:'70px',height:'50px',borderRadius:'10px',objectFit:'cover'}} /></td>
                           <td style={{textAlign:'center',verticalAlign:'middle'}}>{product?.productName}</td>
                           <td style={{textAlign:'center',verticalAlign:'middle'}}>{product?.price+" $"}</td>
-                          {/* <td style={{textAlign:'center',verticalAlign:'middle'}}>
+                          <td style={{textAlign:'center',verticalAlign:'middle'}}>
                             <div style={{display:'flex',gap:'25px',justifyContent:'center'}}>
                             <i class="bi bi-trash-fill" style={{color:'red',cursor:'pointer'}} onClick={()=>_handleDeleteProduct(product?._id)}></i>
                             <i class="bi bi-pencil-square" data-bs-toggle="modal" 
           data-bs-target="#exampleModal" style={{cursor:'pointer',color:'#07162e'}} onClick={()=>_handleEditProduct(product)}></i>
                             </div>
-                          </td> */}
+                          </td>
                         </tr>
                       }) : 
                       <tr>
