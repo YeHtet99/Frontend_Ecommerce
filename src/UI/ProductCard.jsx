@@ -67,9 +67,9 @@ export default function ProductCard({item}) {
             <div style={{display:'flex',alignItems:'end',justifyContent:'space-between'}}>
             <div>
             <h5 className='px-2 py-2' style={{fontWeight:'28px'}}>
-                {/* <Link to={`/shop/${item._id}`}> */}
+                <Link to={`/shop/${item._id}`}>
                 {item.productName}
-                {/* </Link> */}
+                </Link>
             </h5>
             {/* <p className='px-2 text-start' style={{fontWeigth:'bold'}}>{item.category}</p> */}
             {/* <span className='px-2 product_card_price'> */}

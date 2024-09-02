@@ -1,173 +1,116 @@
 import React, { useRef } from 'react';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
-import { useSelector,useDispatch } from 'react-redux';
-import { baseUrl } from '../api/url';
+import { toPng } from 'html-to-image';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 const Voucher = () => {
   const voucherRef = useRef();
+  const totalAmount=useSelector((state)=>state.item.totalAmount)
   const cartItems=useSelector((state)=>state.item.cartItems)
-  const userId=useSelector((state)=>state.auth.userId)
+  const userName=useSelector(state=>state.auth?.userName)
+  console.log("userName",useSelector(state=>state.auth?.user?.email))
+  const email = useSelector(state=>state.auth?.user?.email)
+  const InvoiceDate =  moment(new Date()).format(
+    "DD/MM/YYYY")
 
-  const handleDownloadPDF = async () => {
+  const handleDownload = () => {
     if (voucherRef.current === null) {
       return;
     }
-  
-    try {
-      // Render the voucher content to a canvas
-      const canvas = await html2canvas(voucherRef.current, { scale: 2 });
-  
-      // Log canvas details for debugging
-      console.log('Canvas:', canvas);
-  
-      const imgData = canvas.toDataURL('image/png');
-      console.log('Image Data:', imgData); // Log the image data for debugging
-  
-      // Create a new jsPDF instance
-      const pdf = new jsPDF('portrait', 'mm', 'a4');
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-  
-      const imgProps = pdf.getImageProperties(imgData);
-      const imgWidth = imgProps.width;
-      const imgHeight = imgProps.height;
-  
-      const ratio = imgWidth / pdfWidth;
-      const totalPages = Math.ceil(imgHeight / (pdfHeight * ratio));
-  
-      // Log the image properties and pages details
-      console.log('Image Properties:', imgProps);
-      console.log('Total Pages:', totalPages);
-  
-      for (let i = 0; i < totalPages; i++) {
-        const srcY = i * pdfHeight * ratio;
-        const srcHeight = Math.min(pdfHeight * ratio, imgHeight - srcY);
-  
-        const canvasPage = document.createElement('canvas');
-        canvasPage.width = imgWidth;
-        canvasPage.height = srcHeight;
-  
-        const ctx = canvasPage.getContext('2d');
-        ctx.drawImage(
-          canvas,
-          0, srcY, imgWidth, srcHeight,
-          0, 0, imgWidth, srcHeight
-        );
-  
-        const imgDataPage = canvasPage.toDataURL('image/png');
-        console.log('Page Image Data:', imgDataPage); // Log the page image data for debugging
-  
-        if (i > 0) {
-          pdf.addPage();
-        }
-        pdf.addImage(imgDataPage, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      }
-  
-      pdf.save('voucher.pdf');
-    } catch (error) {
-      console.error('Error capturing the voucher image:', error);
-    }
+
+    toPng(voucherRef.current)
+      .then((dataUrl) => {
+        const link = document.createElement('a');
+        link.download = 'voucher.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((error) => {
+        console.error('Error capturing the voucher image:', error);
+      });
   };
-  
-  
 
   return (
     <div>
       <div ref={voucherRef} style={styles.voucher}>
-        <h1>Voucher</h1>
-        <img src="/logo192.png" alt="" />
-        {/* <table className='table table-borderless my-5'>
-                    <thead>
-                      <tr>
-                        <th className='text-center' style={{background:'#07162e',color:'white'}}>Image</th>
-                        <th className='text-center' style={{background:'#07162e',color:'white'}}>Product Name</th>
-                        <th className='text-center' style={{background:'#07162e',color:'white'}}>Quantity</th>
-                        <th className='text-center' style={{background:'#07162e',color:'white'}}>Price</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {
-                          cartItems.length > 0 ? 
-                          cartItems.map((item,index)=>(
-                            <>
-                           <Tr item={item} userId={userId}></Tr>
-                           {
-                            index == cartItems.length - 1 ? 
-                            <tr>
-                          
-      <td className='text-center' style={{verticalAlign:'middle',fontSize:'26px',fontWeight:'bold'}}>
-        Total
-        </td>
-      <td className='text-center' style={{verticalAlign:'middle'}}>
-        <img src="/logo192.png" alt="" />
-      </td>
-      <td className='text-center' style={{verticalAlign:'middle'}}>
-        </td>
-      <td className='text-center' style={{verticalAlign:'middle',fontSize:'26px',fontWeight:'bold'}}>$8790</td>
-    </tr> : null
-                           }
-                           
-                           </>
-                          )) 
-                          : <tr className='text-center'>
-                            <td colSpan={4}>There is no products in your cart</td>
-                          </tr>
-                        }
-                      
-                    </tbody>
-                  </table> */}
-        {/* Add more content here to test multi-page PDF */}
-      </div>
-      <button onClick={handleDownloadPDF}>Download Voucher as PDF</button>
-    </div>
-  );
-  
-};
-const Tr=({item,userId})=>{
-  
-    // const dispatch=useDispatch()
-    // const deleteHandler=()=>{
-    // //  const data={
-    // //   id:item.id,
-    // //   ownerId:item.ownerId
-    // //  }
-    //   deleteFromCart(item.id,userId)
-    //   dispatch(cartActions.deleteItem(item.id))
-    // }
-    // const plusItem=(item)=>{
-    //   dispatch(cartActions.addItem(item))
-    // }
-    // const minusItem=(item)=>{
-    //   dispatch(cartActions.removeItem(item))
-    // }
-    return(
-      <tr>
-                          
-      <td className='text-center' style={{verticalAlign:'middle',borderBottom:'1px solid #7f7f7f'}}>
-        <img src={baseUrl+item.imgUrl} className='cart_image' alt="" />
-        </td>
-      <td className='text-center' style={{verticalAlign:'middle',borderBottom:'1px solid #7f7f7f'}}>{item.productName}</td>
-      <td className='text-center' style={{verticalAlign:'middle',borderBottom:'1px solid #7f7f7f'}}>
-        <div style={{display:"flex",justifyContent:"space-evenly",alignItems:"center"}}>
-        x {item.quantity}
+        <h3 style={{fontWeight:'bold',textAlign:'start'}}>Shop.com Vouncher</h3>
+        <div style={{margin:'40px 0px',textAlign:'start'}}>
+              <div>Shop.com</div>
+              <div>ShopAdmin99@gmail.com</div>
+        </div>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'end'}}>
+          <div style={{textAlign:'start'}}>
+            <div style={{fontWeight:'bold',marginBottom:'10px'}}>Bill to:</div>
+            <div>{userName}</div>
+            <div>{email}</div>
+          </div>
+          <div>
+            <div style={{display:'flex'}}><div style={{fontWeight:'bold'}}>Invoice Number : </div><div style={{marginLeft:'5px'}}>VC2897</div> </div>
+            <div style={{display:'flex'}}><div style={{fontWeight:'bold'}}>Invoice Date : </div><div style={{marginLeft:'5px'}}>{InvoiceDate}</div> </div>
+          </div>
         </div>
         
-  
-        </td>
-      <td className='text-center' style={{verticalAlign:'middle',borderBottom:'1px solid #7f7f7f'}}>${item.price}</td>
-    </tr>
-    )
-    
-  }
+        <table className='table-bordered' style={{width:'100%',marginTop:'30px'}}>
+          <tr style={{background:'#07162e',color:'white'}}>
+            <th style={{padding:'10px 0px'}}>Product Name</th>
+            <th style={{padding:'10px 0px'}}>Quantity</th>
+            <th style={{padding:'10px 0px'}}>Price Per Unit</th>
+            <th style={{padding:'10px 0px'}}>Amount</th>
+
+          </tr>
+          {
+            cartItems?.length > 0 ? cartItems?.map((v)=>(
+              <tr >
+                  <td style={{padding:'10px 0px'}}>{v.productName}</td>
+                  <td style={{padding:'10px 0px'}}>{v.quantity}</td>
+                  <td style={{padding:'10px 0px'}}>{v.price}$</td>
+                  <td style={{padding:'10px 0px'}}>{v.price * v.quantity}$</td>
+
+              </tr>
+            )) : null
+          }
+          <tr>
+            <th style={{borderBottom:'none'}}></th>
+            <th style={{borderBottom:'none'}}></th>
+            <th style={{fontWeight:'bold',borderBottom:'none',padding:'20px 0px 10px 0px'}}>Subtotal</th>
+            <th style={{fontWeight:'bold',borderBottom:'none'}}>{totalAmount}$</th>
+          </tr>
+          <tr>
+            <th style={{borderBottom:'none',borderTop:'none'}}></th>
+            <th style={{borderBottom:'none',borderTop:'none'}}></th>
+
+            <th style={{fontWeight:'bold',borderBottom:'none',borderTop:'none',padding:'10px'}}>Tax</th>
+            <th style={{fontWeight:'bold',borderBottom:'none',borderTop:'none'}}>0.00 $</th>
+          </tr>
+          <tr>
+            <th style={{borderBottom:'none',borderTop:'none'}}></th>
+            <th style={{borderBottom:'none',borderTop:'none'}}></th>
+
+            <th style={{fontWeight:'bold',borderBottom:'none',borderTop:'none',padding:'10px'}}>Fees/discounts</th>
+            <th style={{fontWeight:'bold',borderBottom:'none',borderTop:'none'}}>0.00 $</th>
+          </tr>
+          <tr>
+            <th style={{borderBottom:'none',borderTop:'none'}}></th>
+            <th style={{borderBottom:'none',borderTop:'none'}}></th>
+
+            <th style={{fontWeight:'bold',borderBottom:'none',borderTop:'none',padding:'10px',background:'#07162e',color:'white'}}>Total</th>
+            <th style={{fontWeight:'bold',borderBottom:'none',borderTop:'none',background:'#07162e',color:'white'}}>{totalAmount}$</th>
+          </tr>
+        </table>
+      </div>
+      <button onClick={handleDownload}>Download Voucher</button>
+    </div>
+  );
+};
 
 const styles = {
   voucher: {
-    width: '210mm', // A4 width
-    minHeight: '297mm', // A4 height
+    width: '800px',
+    height: '800px',
     border: '1px solid #000',
     padding: '20px',
     textAlign: 'center',
+    background:'white'
   },
 };
 

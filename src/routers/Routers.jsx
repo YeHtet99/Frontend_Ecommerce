@@ -44,7 +44,7 @@ export default function Routers() {
             <Route path = 'shop/:id' element={isAuthenticated ? <ProductDetails/> : <Login/>}></Route>
             <Route path = 'register' element={<Signup></Signup>}></Route>
             <Route path = 'profile' element={isAuthenticated ? <Profile/> : <Login/>}></Route>
-            {/* <Route path = 'vouncher' element={isAuthenticated ? <Voucher/> : <Login/>}></Route> */}
+            <Route path = 'vouncher' element={isAuthenticated ? <Voucher/> : <Login/>}></Route>
 
             <Route path = 'admin' element={isAuthenticated && userType == 'admin' ? <Admin/> : isAuthenticated ? <Home/> :  <Login/>}></Route>
             {/* <Route path='admin' element={<Admin/>}></Route> */}

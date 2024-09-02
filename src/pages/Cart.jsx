@@ -71,11 +71,11 @@ export default function Cart() {
                   <motion.button className='cart_button w-100 mb-2' whileTap={{scale:1.2}}>
                     <Link to='/shop'>Continue Shopping</Link>
                   </motion.button>
-                  {/* <motion.button className='cart_button w-100' whileTap={{scale:1.2}}>
+                  <motion.button className='cart_button w-100' whileTap={{scale:1.2}}>
                     <Link to='/vouncher'>
                     Get Vouncher
                     </Link>
-                  </motion.button> */}
+                  </motion.button>
                 </Col>
                
                 
