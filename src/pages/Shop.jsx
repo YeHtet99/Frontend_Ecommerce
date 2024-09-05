@@ -116,7 +116,7 @@ export default function Shop() {
   }
 
   const stickyCondition = filterCategory?.length === 0 ? stickyStyle : normalStyle;
-  console.log("style======>",stickyCondition)
+  console.log("style======>,fasfasf",stickyCondition)
   return (
     <div>
       <Header></Header>
