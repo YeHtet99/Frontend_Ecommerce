@@ -126,7 +126,7 @@ export default function Home() {
               <Row 
               // style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}
               >
-                <Col lg='6'>
+                <Col lg='6' md='6' sm='12'>
                     <div className='count_down_content'>
                       <h4 style={{margin:'20px 0px'}}>Limited Offers</h4>
                       <h5 style={{marginBottom:'20px'}}>I Phone 15 Pro Max</h5>
@@ -138,10 +138,10 @@ export default function Home() {
                       </Link>
                     </motion.button>
                 </Col>
-                <Col lg='6'>
-                  <span>
+                <Col lg='6' md='6' sm='12'>
+                  <div style={{background:'#07162e'}}>
                     <img src={counterImg} alt="" className='text-end' />
-                  </span>
+                  </div>
                 </Col>
               </Row>
             </Container>
@@ -170,12 +170,12 @@ export default function Home() {
           <section className='footer'>
             <Container>
             <Row>
-                <Col lg='4'>
+                <Col lg='4' md='6' sm='12'>
                   <h5 className='mb-3 mt-4 text-white'>Shop.com</h5>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, fuga molestias vero reiciendis quibusdam quia illum pariatur tempore consequuntur adipisci expedita harum cum ipsa velit soluta cupiditate, aliquid accusamus maxime.</p>
 
                 </Col>
-                <Col lg='2'>
+                <Col lg='2' md='6' sm='12'>
                   <h5 className='mb-3 mt-4 text-white'>Top Cateogories</h5>
                   <div style={{lineHeight:2}}>
                   <p>I Phone</p>
@@ -183,7 +183,7 @@ export default function Home() {
                   </div>
 
                 </Col>
-                <Col lg='2'>
+                <Col lg='2' md='6' sm='12'>
                   <h5 className='mb-3 mt-4 text-white' >Useful Links</h5>
                   <div style={{lineHeight:2}}>
                     <p>Shop</p>
@@ -194,7 +194,7 @@ export default function Home() {
                   
 
                 </Col>
-                <Col lg='4'>
+                <Col lg='4' md='6' sm='12'>
                   <h5 className='mb-3 mt-4 text-white'>Contact</h5>
                   <div style={{lineHeight:2}}>
                     <p>
@@ -210,7 +210,7 @@ export default function Home() {
                  
                 </Col>
                 <Col lg='12'>
-                  <p className='text-center mt-5'>Copyright {now_year} developed by YMH</p>
+                  <p className='text-center mt-5 mb-3'>Copyright {now_year} developed by YMH</p>
                 </Col>
               </Row>
             </Container>

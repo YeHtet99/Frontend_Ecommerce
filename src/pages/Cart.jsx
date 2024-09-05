@@ -13,6 +13,7 @@ import Header from '../components/Header'
 import { getItem } from '../redux/actions/itemAction'
 import { deleteFromCart } from '../api/item'
 import { baseUrl } from '../api/url'
+import VouncherModal from '../components/VouncherModal'
 // import armChair from '../assets/images/arm-chair-01.jpg'
 
 
@@ -71,10 +72,9 @@ export default function Cart() {
                   <motion.button className='cart_button w-100 mb-2' whileTap={{scale:1.2}}>
                     <Link to='/shop'>Continue Shopping</Link>
                   </motion.button>
-                  <motion.button className='cart_button w-100' whileTap={{scale:1.2}}>
-                    <Link to='/vouncher'>
+                  <motion.button className='cart_button w-100' data-bs-toggle="modal" 
+          data-bs-target="#vouncherModal" whileTap={{scale:1.2}}> 
                     Get Vouncher
-                    </Link>
                   </motion.button>
                 </Col>
                
@@ -130,6 +130,7 @@ export default function Cart() {
             </Container>
           </section>
       </Helmet>
+      <VouncherModal/>
     </div>
   )
 }

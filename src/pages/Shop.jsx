@@ -24,14 +24,14 @@ export default function Shop() {
   ]
   const PriceList=[
     {
-      value:1,label:'Ascending'
+      value:1,label:'High Price To Low Price'
     },
     {
-      value:2,label:'Descending'
+      value:2,label:'Low Price To High Price'
     }
   ]
   const [filterCategory,setFilterCategory]=useState(products)
-  const [selectedCategory,setSelectedCategory]=useState(null)
+  const [selectedCategory,setSelectedCategory]=useState({value:'all',label:'All'})
   const [filterPrice,setFilterPrice]=useState(products)
   const [selectedPrice,setSelectedPrice]=useState(null)
   const [selecteSearch,setSelectedSearch]=useState('')
@@ -70,11 +70,11 @@ export default function Shop() {
   // }
   const handleCategoryList=(e)=>{
     setSelectedCategory(e)
-    if(e.value == 'all'){
+    if(e.value == 'all' || e.value == ''){
       setFilterCategory(products)
       setSelectedPrice(null)
     }else{
-      const filterProducts=products.filter(item =>item.category == e.value)
+      const filterProducts=products?.filter(item =>item.category == e.value)
       console.log("filter products",filterProducts)
       setFilterCategory(filterProducts)
       setSelectedPrice(null)
@@ -82,13 +82,15 @@ export default function Shop() {
     
   }
   const handlePriceList=(e)=>{
-    console.log("handle price",e)
+    console.log("handle price",e,filterCategory)
     setSelectedPrice(e)
-    if(e.value == 1){
-      const filterPrice = filterCategory.sort((a,b)=>b.price-a.price)
+    if(e?.value == 1){
+      // console.log("filterPrice",filterCategory && filterCategory?.sort((a,b)=>b.price-a.price))
+      const filterPrice = filterCategory ? filterCategory?.slice()?.sort((a,b)=>b.price-a.price) : []
+      
     setFilterCategory(filterPrice)
     }else{
-      const filterPrice = filterCategory.sort((a,b)=>a.price-b.price)
+      const filterPrice = filterCategory ? filterCategory?.slice()?.sort((a,b)=>a.price-b.price) : []
     setFilterCategory(filterPrice)
     }
     
@@ -97,7 +99,7 @@ export default function Shop() {
     console.log(e.target.value)
     let searchText=e.target.value
     setSelectedSearch(e.target.value)
-    const searchItem=products.filter(item => item.productName.toLowerCase().includes(searchText.toLowerCase()))
+    const searchItem=products?.filter(item => item.productName.toLowerCase().includes(searchText.toLowerCase()))
     console.log(searchItem)
     setFilterCategory(searchItem)
   }
@@ -106,11 +108,11 @@ export default function Shop() {
     bottom: 0,
     right: 0,
     background:"#07162e",
-    height:"300px"
+    // height:"300px"
   };
   const normalStyle={
     background:"#07162e",
-    height:"300px"
+    // height:"300px"
   }
 
   const stickyCondition = filterCategory?.length === 0 ? stickyStyle : normalStyle;
@@ -187,19 +189,19 @@ export default function Shop() {
         >
             <Container>
             <Row>
-                <Col lg='4'>
+                <Col lg='4' md='6' sm='12'>
                   <h5 className='mb-3 mt-4 text-white'>Shop.com</h5>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, fuga molestias vero reiciendis quibusdam quia illum pariatur tempore consequuntur adipisci expedita harum cum ipsa velit soluta cupiditate, aliquid accusamus maxime.</p>
 
                 </Col>
-                <Col lg='2'>
+                <Col lg='2' md='6' sm='12'>
                   <h5 className='mb-3 mt-4 text-white'>Top Cateogories</h5>
                   <div style={{lineHeight:2}}>
                   <p>I Phone</p>
                   </div>
 
                 </Col>
-                <Col lg='2'>
+                <Col lg='2' md='6' sm='12'>
                   <h5 className='mb-3 mt-4 text-white' >Useful Links</h5>
                   <div style={{lineHeight:2}}>
                     <p>Shop</p>
@@ -210,7 +212,7 @@ export default function Shop() {
                   
 
                 </Col>
-                <Col lg='4'>
+                <Col lg='4' md='6' sm='12'>
                   <h5 className='mb-3 mt-4 text-white'>Contact</h5>
                   <div style={{lineHeight:2}}>
                     <p>
@@ -226,7 +228,7 @@ export default function Shop() {
                  
                 </Col>
                 <Col lg='12'>
-                  <p className='text-center mt-5'>Copyright {now_year} developed by YMH</p>
+                  <p className='text-center mt-5 mb-3'>Copyright {now_year} developed by YMH</p>
                 </Col>
               </Row>
             </Container>

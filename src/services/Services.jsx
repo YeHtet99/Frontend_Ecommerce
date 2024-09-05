@@ -10,7 +10,7 @@ export default function Services() {
                 <Row>
                     {
                         ServicesData.map((item,index)=>(
-                            <Col lg='3' md='4'>
+                            <Col lg='3' md='4' sm='12' style={{marginBottom:'10px'}}>
                             <div className='service_details' 
                             style={{
                                 // background:`${item.bg}`
