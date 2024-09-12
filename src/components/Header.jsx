@@ -56,22 +56,28 @@ export default function Header() {
         }
     ]
   return (
-    <div style={{height:50,display:"flex",alignItems:"center",background:'white'}} ref={refHeader}>
+    <div style={{display:"flex",alignItems:"center",background:'white'}} className='site-nav' id='site-nav' ref={refHeader}>
         <Container>
             <Row>
-                <div className="nav_wrapper"  style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    <div className="logo" style={{gap:10}} onClick={()=>navigate('/home')}>
-                        <img src={logo} className='logo-icon' alt="" />
-                        <h5 style={{fontWeight:'bold'}}>Shop.com</h5>
-                        
+                <div className="nav_wrapper navbar navbar-expand-lg"  style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                    <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
+                        <div className="logo" style={{gap:10}} onClick={()=>navigate('/home')}>
+                            <img src={logo} className='logo-icon' alt="" />
+                            <h5 style={{fontWeight:'bold'}}>Shop.com</h5>
+                            
+                        </div>
+                        <div class="navbar-toggler border-0" style={{background:'#07162e',color:'white',borderRadius:'20px'}} data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="bi bi-list menu-icon"></i>
+                        </div>
                     </div>
                     {
-                        userType == "admin" ? null :  <div className='navigation'>
-                        <ul className='nav_links m-0'>
+                        userType == "admin" ? null :  
+                        <div className='collapse navbar-collapse navigation' id="navbarSupportedContent" style={{justifyContent:'end',background:'white'}}>
+                        <ul className='nav_links navbar-nav mb-lg-0'>
                             {
                                 nav_links.map((item,index)=>(
-                                    <li className='nav_item'>
-                                <NavLink to={"/"+item.link} className={(navClass)=>navClass.isActive ? 'nav_links_active' : ''}>{item.display}</NavLink>
+                                    <li className='nav_item nav-item'>
+                                <NavLink to={"/"+item.link} className={(navClass)=>navClass.isActive ? 'nav_links_active nav-link' : 'nav-link'}>{item.display}</NavLink>
                             </li>
                                 ))
                             }
@@ -97,11 +103,6 @@ export default function Header() {
                         <span className='bag_icon_noti'>{totalQuantity}</span>
                         </motion.span>
                         }
-                        
-                        {/* <span className='heart_icon'>
-                        <i class="ri-heart-fill" style={{width:20,height:20}}></i>
-                        <span className='heart_icon_noti'>2</span>
-                        </span> */}
                         <div onClick={()=>setDialog(!showDialog)} style={{display:"flex",gap:"15px",alignItems:"center",cursor:"pointer"}}>
                                 <div className='user_icon'>
                                     <motion.img whileTap={{scale:1.1}} src={user_icon} alt="" />

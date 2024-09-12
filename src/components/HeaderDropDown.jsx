@@ -33,7 +33,7 @@ const HeaderDropDown = (props) => {
           right: 0,
           background: "#fff",
           color: "black",
-          zIndex: 1,
+          zIndex: 100,
           borderRadius: 5,
         //   width: role === "org_admin" || role === MyConstants.CARBON_USER_ROLE ? 223 : 173,
         width:200,
