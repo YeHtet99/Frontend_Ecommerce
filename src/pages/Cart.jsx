@@ -74,7 +74,7 @@ export default function Cart() {
                   </motion.button>
                   <motion.button className='cart_button w-100' data-bs-toggle="modal" 
           data-bs-target="#vouncherModal" whileTap={{scale:1.2}}> 
-                    Get Vouncher
+                    Preview Vouncher
                   </motion.button>
                 </Col>
                
