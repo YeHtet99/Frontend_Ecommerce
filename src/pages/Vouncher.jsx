@@ -38,13 +38,13 @@ const Voucher = () => {
               <div>Shop.com</div>
               <div>ShopAdmin99@gmail.com</div>
         </div>
-        <div style={{display:'flex',justifyContent:'space-between',alignItems:'end'}}>
-          <div style={{textAlign:'start'}}>
+        <div className='row' style={{display:'flex',justifyContent:'space-between',alignItems:'end'}}>
+          <div className='col-lg-6 col-md-6 col-12' style={{textAlign:'start'}}>
             <div style={{fontWeight:'bold',marginBottom:'10px'}}>Bill to:</div>
             <div>{userName}</div>
             <div>{email}</div>
           </div>
-          <div>
+          <div className='col-lg-6 col-md-6 col-12'>
             <div style={{display:'flex'}}><div style={{fontWeight:'bold'}}>Invoice Number : </div><div style={{marginLeft:'5px'}}>VC2897</div> </div>
             <div style={{display:'flex'}}><div style={{fontWeight:'bold'}}>Invoice Date : </div><div style={{marginLeft:'5px'}}>{InvoiceDate}</div> </div>
           </div>
