@@ -9,6 +9,7 @@ import user_icon from '../assets/images/user-icon.png'
 
 import './Header.css'
 import { useSelector } from 'react-redux'
+import { updateItemQuantity } from '../api/item'
 
 
 export default function Header() {
@@ -22,6 +23,20 @@ export default function Header() {
     const cartItems=useSelector((state)=>state.item.cartItems)
     const totalQuantity = cartItems?.reduce((p,c)=>p+c.quantity,0)
     const [showDialog,setDialog]=useState(false);
+
+    const _handleLogout= async()=>{
+        cookies.remove("userName","/")
+        cookies.remove("auth","/")
+        cookies.remove("userId","/")
+        cookies.remove('token','/')
+        cookies.remove('userType','/')
+        localStorage.clear()
+        await updateItemQuantity(cartItems)
+        // purgeAuthState();
+        window.location.reload();
+
+        navigate('/login')
+    }
     // console.log("totalQunatity",totalQuantity)
     const stickyHeader=()=>{
         window.addEventListener('scroll',()=>{
@@ -71,31 +86,8 @@ export default function Header() {
                         </div>
                     </div>
                     {
-                        userType == "admin" ? null :  
-                        <div className='collapse navbar-collapse navigation' id="navbarSupportedContent" style={{justifyContent:'end',background:'white'}}>
-                        <ul className='nav_links navbar-nav mb-lg-0'>
-                            {
-                                nav_links.map((item,index)=>(
-                                    <li className='nav_item nav-item'>
-                                <NavLink to={"/"+item.link} className={(navClass)=>navClass.isActive ? 'nav_links_active nav-link' : 'nav-link'}>{item.display}</NavLink>
-                            </li>
-                                ))
-                            }
-                            {/* <li className='nav_item'>
-                                <NavLink to='home'>Home</NavLink>
-                            </li>
-                            <li className='nav_item'>
-                                <NavLink to='shop'>Shop</NavLink>
-                            </li>
-                            <li className='nav_item'>
-                                <NavLink to='cart'>Cart</NavLink>
-                            </li> */}
-                            
-                        </ul>
-                    </div>
-                    }
-                    
-                    <div className="user_details" style={{position:'relative'}}>
+                        userType == "admin" ? 
+                        <div className="user_details" style={{position:'relative'}}>
                         {
                             userType == "admin" ? null : 
                             <motion.span whileTap={{scale:1.2}} className='bag_icon' onClick={handleCartList}>
@@ -116,12 +108,90 @@ export default function Header() {
                         }
                         
                     </div>
+                         :  
+                        <div className='collapse navbar-collapse navigation' id="navbarSupportedContent" style={{justifyContent:'end',background:'white'}}>
+                        <ul className='nav_links navbar-nav mb-lg-0'>
+                            {
+                                nav_links.map((item,index)=>(
+                                    <li className='nav_item nav-item'>
+                                <NavLink to={"/"+item.link} className={(navClass)=>navClass.isActive ? 'nav_links_active nav-link' : 'nav-link'}>{item.display}</NavLink>
+                            </li>
+                                ))
+                            }
+                            {/* <li className='nav_item'>
+                                <NavLink to='home'>Home</NavLink>
+                            </li>
+                            <li className='nav_item'>
+                                <NavLink to='shop'>Shop</NavLink>
+                            </li>
+                            <li className='nav_item'>
+                                <NavLink to='cart'>Cart</NavLink>
+                            </li> */}
+                            
+                        </ul>
+                        <div className="user_details" style={{position:'relative'}}>
+                        
+                                    <div style={{display:"flex",gap:"15px",alignItems:"center",cursor:"pointer"}}>
+                                    {
+                            userType == "admin" ? null : 
+                            <motion.span whileTap={{scale:1.2}} className='bag_icon' onClick={handleCartList}>
+                        <i class="ri-shopping-bag-line"></i>
+                        <span className='bag_icon_noti'>{totalQuantity}</span>
+                        </motion.span>
+                        }
+                                    <div style={{display:'flex',alignItems:'center',gap:'5px',cursor:'pointer'}}>
+                                        <div className='user_icon'>
+                                            <motion.img whileTap={{scale:1.1}} src={user_icon} alt="" />
+                                        </div>
+                                        <div>
+                                            {userName}
+                                        </div>
+                                    </div>
+                                    
+                                    </div>
+                                    <div className="p-1" style={{ textAlign: "left",background:'#07162e',borderRadius:'5px',color:'white',width:'120px',display:'flex',justifyContent:'center',cursor:'pointer' }} 
+                                    onClick={() => _handleLogout()}
+                                    >
+                                    <div style={{ display: "flex" }}>
+                                        <i className="ri-logout-box-line pe-2"></i>
+                                        {"Log Out"}
+                                    </div>
+                                    </div>
+                        {/* {
+                        showDialog && (<HeaderDropDown/>)
+                        } */}
+                        
+                    </div>
+                    </div>
+                    }
                     
-                    <div className="mobile_menu">
+                    {/* <div className="user_details" style={{position:'relative'}}>
+                        {
+                            userType == "admin" ? null : 
+                            <motion.span whileTap={{scale:1.2}} className='bag_icon' onClick={handleCartList}>
+                        <i class="ri-shopping-bag-line"></i>
+                        <span className='bag_icon_noti'>{totalQuantity}</span>
+                        </motion.span>
+                        }
+                        <div onClick={()=>setDialog(!showDialog)} style={{display:"flex",gap:"15px",alignItems:"center",cursor:"pointer"}}>
+                                <div className='user_icon'>
+                                    <motion.img whileTap={{scale:1.1}} src={user_icon} alt="" />
+                                </div>
+                                <div>
+                                    {userName}
+                                </div>
+                        </div>
+                        {
+                        showDialog && (<HeaderDropDown/>)
+                        }
+                        
+                    </div> */}
+                    
+                    {/* <div className="mobile_menu">
                         <span>
                             <i class="ri-menu-line"></i>
                         </span>
-                    </div>
+                    </div> */}
                 </div>
             </Row>
         </Container>
