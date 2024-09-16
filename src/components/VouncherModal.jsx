@@ -44,7 +44,7 @@ aria-labelledby="vouncherModalLabel" aria-hidden="false">
         <h5 class="modal-title" id="vouncherModalLabel" style={{color:'black'}}>Preview Vouncher</h5>
         <div className='cart_button' onClick={handleDownload}>Download Voucher</div>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style={{overflow:'scroll hidden'}}>
       <div ref={voucherRef} style={styles.voucher}>
         <h3 style={{fontWeight:'bold',textAlign:'start'}}>Shop.com Vouncher</h3>
         <div style={{margin:'40px 0px',textAlign:'start'}}>
@@ -122,7 +122,8 @@ aria-labelledby="vouncherModalLabel" aria-hidden="false">
 
 const styles = {
   voucher: {
-    // width: '800px',
+    width: '766px',
+    // overFlow:'scroll hidden',
     // height: '800px',
     border: '1px solid #000',
     padding: '20px',
