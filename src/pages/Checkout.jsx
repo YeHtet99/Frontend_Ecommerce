@@ -67,6 +67,10 @@ export default function Checkout() {
                   <h5 className='mb-3 mt-4 text-white'>Top Cateogories</h5>
                   <div style={{lineHeight:2}}>
                   <p>I Phone</p>
+                  <p>Xiaomi</p>
+                  <p>Huawei</p>
+                  <p>Vivo</p>
+                  <p>Oppo</p>
                   
                   </div>
 

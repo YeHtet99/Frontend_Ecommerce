@@ -64,14 +64,14 @@ const cartSlices = createSlice({
             state.cartItems =state.cartItems.filter(item=>item.id != id)
             state.totalQuantity=state.totalQuantity - existingItem.quantity
         }
-        state.totalAmount =state.cartItems.reduce((total,item)=>total + (Number(item.price) *  Number(item.quantity)),0)
+        state.totalAmount =state?.cartItems?.reduce((total,item)=>total + (Number(item.price) *  Number(item.quantity)),0)
         
     },
     getItem:(state,action)=>{
         console.log("get item in slice",state,action)
         state.cartItems = action.payload;
         state.totalQuantity=action.payload.length;
-        state.totalAmount =state.cartItems.reduce((total,item)=>total + (Number(item.price) *  Number(item.quantity)),0)
+        state.totalAmount =state?.cartItems?.reduce((total,item)=>total + (Number(item.price) *  Number(item.quantity)),0)
     }
    
   }

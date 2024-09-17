@@ -19,6 +19,7 @@ import { getItem,getAllItem } from '../api/item'
 import { cartActions } from '../redux/slices/cartSlices'
 import { productDataActions } from '../redux/slices/productDataSlices'
 import { getAllProducts } from '../api/product'
+import { updateItemQuantity } from '../api/item'
 
 
 
@@ -26,6 +27,8 @@ import { getAllProducts } from '../api/product'
 export default function Home() {
   const now_year=new Date().getFullYear()
   const products = useSelector((state)=>state.productData.products)
+  const cartItems=useSelector((state)=>state.item.cartItems)
+
 
   const [tredingProducts,setTrendingProducts]=useState([])
   const [bestSales,setBestSales]=useState([])
@@ -50,6 +53,15 @@ export default function Home() {
     setPropular(filterPopular)
 
   },[products])
+
+  useEffect(()=>{
+    const fetchData = async () => {
+    let updateData = await updateItemQuantity(cartItems);
+    dispatch(cartActions.getItem(updateData));
+  };
+
+  fetchData();
+  },[userId,dispatch])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -179,6 +191,10 @@ export default function Home() {
                   <h5 className='mb-3 mt-4 text-white'>Top Cateogories</h5>
                   <div style={{lineHeight:2}}>
                   <p>I Phone</p>
+                  <p>Xiaomi</p>
+                  <p>Huawei</p>
+                  <p>Vivo</p>
+                  <p>Oppo</p>
                   
                   </div>
 

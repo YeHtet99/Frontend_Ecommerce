@@ -34,7 +34,7 @@ export default function Cart() {
       <Header/>
       <Helmet title="Cart">
           <Commonsection title="Carts"></Commonsection>
-          <section className='cart_list'>
+          <section className='cart_list' style={{minHeight:'46vh'}}>
             <Container>
               <Row>
                 
@@ -45,7 +45,7 @@ export default function Cart() {
                         <th className='text-center' style={{background:'#07162e',color:'white'}}>Image</th>
                         <th className='text-center' style={{background:'#07162e',color:'white'}}>Product Name</th>
                         <th className='text-center' style={{background:'#07162e',color:'white'}}>Quantity</th>
-                        <th className='text-center' style={{background:'#07162e',color:'white'}}>Price</th>
+                        <th className='text-center' style={{background:'#07162e',color:'white'}}>Unit Price</th>
                         <th className='text-center' style={{background:'#07162e',color:'white'}}>Action</th>
                       </tr>
                     </thead>
@@ -94,6 +94,10 @@ export default function Cart() {
                   <h5 className='mb-3 mt-4 text-white'>Top Cateogories</h5>
                   <div style={{lineHeight:2}}>
                   <p>I Phone</p>
+                  <p>Xiaomi</p>
+                  <p>Huawei</p>
+                  <p>Vivo</p>
+                  <p>Oppo</p>
                   </div>
 
                 </Col>

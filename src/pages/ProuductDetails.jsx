@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import {cartActions} from '../redux/slices/cartSlices'
 import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { addItem,getItem } from '../api/item'
 import { baseUrl } from '../api/url'
 
 export default function ProuductDetails() {
@@ -20,6 +21,7 @@ export default function ProuductDetails() {
   const paramsId=useParams()
   console.log("param id",paramsId)
   const products = useSelector((state)=>state.productData.products)
+  const userID=useSelector((state)=>state.auth.userId)
   const filterProucts=products.filter(item=>item._id == paramsId.id)
   console.log("filterProucts",filterProucts)
   const {imgUrl,avgRating,description,productName,price,category,id,reviews}=filterProucts[0]
@@ -48,20 +50,23 @@ export default function ProuductDetails() {
     }
     console.log(reviewObj)
   }
-  const addToCart=()=>{
-    dispatch(cartActions.addItem({
-      id,
-      image:imgUrl,
-      productName,
-      price,
-    }))
-    toast.success('Products added successfully')
-  }
-  // useEffect(()=>{
-  //   // window.screenTop(0,0)
-  //   // alert('br nyar')
-  //   window.screenTop(0,0)
-  // },[filterProucts])
+
+  const addToCart=async()=>{
+        const data = await addItem({
+            id:paramsId.id,
+            productName:productName,
+            price:price,
+            imgUrl:imgUrl,
+            userId:userID
+        })
+        console.log("data in product card",data)
+        if(data?.success == true){
+            toast.success("Successfully Added.")
+            dispatch(cartActions.getItem(data?.payload))
+        }else{
+            toast.error(data?.message)
+        }
+}
   
   console.log("filter products",tab,reviews)
   return (
@@ -158,6 +163,10 @@ export default function ProuductDetails() {
                   <h5 className='mb-3 mt-4 text-white'>Top Cateogories</h5>
                   <div style={{lineHeight:2}}>
                   <p>I Phone</p>
+                  <p>Xiaomi</p>
+                  <p>Huawei</p>
+                  <p>Vivo</p>
+                  <p>Oppo</p>
                   
                   </div>
 
