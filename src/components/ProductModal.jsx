@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import { productDataActions } from '../redux/slices/productDataSlices';
 import { baseUrl } from '../api/url';
+import { toast } from 'react-toastify';
 
 
 export default function ProductModal({editData,setEditData}) {
@@ -77,6 +78,7 @@ export default function ProductModal({editData,setEditData}) {
             console.log("data of data",data)
             if(data.success){
               console.log("success condition")
+              toast.success('Successfully Created.')
               dispatch(productDataActions.getProducts(data.payload));
             }
             
@@ -106,6 +108,7 @@ export default function ProductModal({editData,setEditData}) {
             console.log("data of data",data)
             if(data?.success){
               console.log("success condition")
+              toast.success('Successfully Updated.')
               dispatch(productDataActions.getProducts(data.payload));
             }
       }
@@ -195,10 +198,11 @@ data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="false
                 }}
               />
 
-      <input type="text" className='form-control mb-4' name="description" 
+      <textarea type="textarea" className='form-control mb-4' name="description" 
      value={formState.description} 
+     rows={5}
      onChange={handleChange}  
-      placeholder='Description' />
+      placeholder='Description'></textarea>
       <input type="number" className='form-control mb-4' name="price" 
      value={formState.price} 
      onChange={handleChange}  

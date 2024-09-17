@@ -11,6 +11,7 @@ import { productDataActions } from '../redux/slices/productDataSlices'
 import { deleteProduct } from '../api/product';
 import Header from '../components/Header';
 import { baseUrl } from '../api/url';
+import { toast } from 'react-toastify';
 
 export default function Admin() {
   // const [products,setProducts] = useState([]);
@@ -54,9 +55,9 @@ export default function Admin() {
     <div style={{marginTop:'20px'}}>
       
       <Helmet title={'Admin'} >
-        <section className=''>
+        <section className='' style={{marginTop:'50px'}}>
           <Container>
-          <h3>Product Lists
+          <h3 style={{color:'black'}}>Product Lists
           <i class="bi bi-plus-square-fill"
           data-bs-toggle="modal" 
           data-bs-target="#exampleModal"
