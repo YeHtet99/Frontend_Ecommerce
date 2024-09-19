@@ -81,9 +81,13 @@ export default function Header() {
                             <h5 style={{fontWeight:'bold'}}>Shop.com</h5>
                             
                         </div>
-                        <div class="navbar-toggler border-0" style={{background:'#07162e',color:'white',borderRadius:'20px'}} data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        {
+                            userType !== "admin" ? 
+                            <div class="navbar-toggler border-0" style={{background:'#07162e',color:'white',borderRadius:'20px'}} data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="bi bi-list menu-icon"></i>
-                        </div>
+                        </div> : null
+                        }
+                        
                     </div>
                     {
                         userType == "admin" ? 
