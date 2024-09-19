@@ -188,7 +188,7 @@ export default function Home() {
 
                 </Col>
                 <Col lg='2' md='6' sm='12'>
-                  <h5 className='mb-3 mt-4 text-white'>Top Cateogories</h5>
+                  <h5 className='mb-3 mt-4 text-white'>Top Brands</h5>
                   <div style={{lineHeight:2}}>
                   <p>I Phone</p>
                   <p>Xiaomi</p>
