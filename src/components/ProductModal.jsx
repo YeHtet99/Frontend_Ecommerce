@@ -21,7 +21,18 @@ export default function ProductModal({editData,setEditData}) {
         file: null,
         productName: '',
         price : '',
-        description : ''
+        description : '',
+        displaySize:'',
+        weights:'',
+        chipSet:'',
+        cpu:'',
+        gpu:'',
+        storage:'',
+        selfieCamera:'',
+        mainCamera:'',
+        ultraWide:'',
+        telePhoto:'',
+        battery:''
       });
     const [categoryName,setCategoryName] = useState('')
       useEffect(()=>{
@@ -30,7 +41,18 @@ export default function ProductModal({editData,setEditData}) {
             file:editData?.originalFileName,
             productName: editData?.productName,
             price : editData?.price,
-            description : editData?.description
+            description : editData?.description,
+            displaySize:editData?.displaySize,
+            weights:editData?.weights,
+            chipSet:editData?.chipSet,
+            cpu:editData?.cpu,
+            gpu:editData?.gpu,
+            storage:editData?.storage,
+            selfieCamera:editData?.selfieCamera,
+            mainCamera:editData?.mainCamera,
+            ultraWide:editData?.ultraWide,
+            telePhoto:editData?.telePhoto,
+            battery:editData?.battery
           })
           setCategoryName(editData.category)
         }
@@ -64,7 +86,17 @@ export default function ProductModal({editData,setEditData}) {
             productName,
             // categoryName ,
             price ,
-            description } = formState
+            description,displaySize,
+            weights,
+            chipSet,
+            cpu,
+            gpu,
+            storage,
+            selfieCamera,
+            mainCamera,
+            ultraWide,
+            telePhoto,
+            battery } = formState
             let formData = new FormData();
             const cookies = new Cookies();
             const userId = cookies.get('userId')
@@ -73,6 +105,19 @@ export default function ProductModal({editData,setEditData}) {
             formData.append("categoryName",categoryName);
             formData.append("price",price);
             formData.append("description",description);
+
+            formData.append("displaySize",displaySize);
+            formData.append("weights",weights);
+            formData.append("chipSet",chipSet);
+            formData.append("cpu",cpu);
+            formData.append("gpu",gpu);
+            formData.append("storage",storage);
+            formData.append("selfieCamera",selfieCamera);
+            formData.append("mainCamera",mainCamera);
+            formData.append("ultraWide",ultraWide);
+            formData.append("telePhoto",telePhoto);
+            formData.append("battery",battery);
+
             formData.append("userId",userId);
             const data = await createProduct(formData)
             console.log("data of data",data)
@@ -92,7 +137,17 @@ export default function ProductModal({editData,setEditData}) {
             productName,
             // categoryName ,
             price ,
-            description } = formState
+            description,displaySize,
+            weights,
+            chipSet,
+            cpu,
+            gpu,
+            storage,
+            selfieCamera,
+            mainCamera,
+            ultraWide,
+            telePhoto,
+            battery } = formState
             let formData = new FormData();
             const cookies = new Cookies();
             const userId = cookies.get('userId')
@@ -103,6 +158,19 @@ export default function ProductModal({editData,setEditData}) {
             formData.append("categoryName",categoryName);
             formData.append("price",price);
             formData.append("description",description);
+
+            formData.append("displaySize",displaySize);
+            formData.append("weights",weights);
+            formData.append("chipSet",chipSet);
+            formData.append("cpu",cpu);
+            formData.append("gpu",gpu);
+            formData.append("storage",storage);
+            formData.append("selfieCamera",selfieCamera);
+            formData.append("mainCamera",mainCamera);
+            formData.append("ultraWide",ultraWide);
+            formData.append("telePhoto",telePhoto);
+            formData.append("battery",battery);
+
             formData.append("userId",userId);
             const data = await updateProduct(formData,editData?._id)
             console.log("data of data",data)
@@ -118,7 +186,18 @@ export default function ProductModal({editData,setEditData}) {
           file: null,
           productName: '',
           price : '',
-          description : ''
+          description : '',
+          displaySize:'',
+          weights:'',
+          chipSet:'',
+          cpu:'',
+          gpu:'',
+          storage:'',
+          selfieCamera:'',
+          mainCamera:'',
+          ultraWide:'',
+          telePhoto:'',
+          battery:''
         })
         setCategoryName('')
         setEditData(null)
@@ -203,6 +282,81 @@ data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="false
      rows={5}
      onChange={handleChange}  
       placeholder='Description'></textarea>
+      <div className='row'>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="displaySize" 
+        value={formState.displaySize} 
+        onChange={handleChange}  
+          placeholder='Display Size' />
+        </div>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="weights" 
+          value={formState.weights} 
+          onChange={handleChange}  
+            placeholder='Weights' />
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="chipSet" 
+        value={formState.chipSet} 
+        onChange={handleChange}  
+          placeholder='ChipSet' />
+        </div>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="cpu" 
+          value={formState.cpu} 
+          onChange={handleChange}  
+            placeholder='CPU' />
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="gpu" 
+        value={formState.gpu} 
+        onChange={handleChange}  
+          placeholder='GPU' />
+        </div>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="storage" 
+          value={formState.storage} 
+          onChange={handleChange}  
+            placeholder='Storage' />
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="selfieCamera" 
+        value={formState.selfieCamera} 
+        onChange={handleChange}  
+          placeholder='Selfie Camera' />
+        </div>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="mainCamera" 
+          value={formState.mainCamera} 
+          onChange={handleChange}  
+            placeholder='Main Camera' />
+        </div>
+      </div>
+      <div className='row'>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="ultraWide" 
+        value={formState.ultraWide} 
+        onChange={handleChange}  
+          placeholder='Ultra Wide Camera' />
+        </div>
+        <div className='col-6'>
+          <input type="text" className='form-control mb-4' name="telePhoto" 
+          value={formState.telePhoto} 
+          onChange={handleChange}  
+            placeholder='TelePhoto Camera' />
+        </div>
+      </div>
+      <input type="text" className='form-control mb-4' name="battery" 
+        value={formState.battery} 
+        onChange={handleChange}  
+          placeholder='Battery Capacity' />
+      
       <input type="number" className='form-control mb-4' name="price" 
      value={formState.price} 
      onChange={handleChange}  

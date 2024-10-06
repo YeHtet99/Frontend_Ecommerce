@@ -24,7 +24,19 @@ export default function ProuductDetails() {
   const userID=useSelector((state)=>state.auth.userId)
   const filterProucts=products.filter(item=>item._id == paramsId.id)
   console.log("filterProucts",filterProucts)
-  const {imgUrl,avgRating,description,productName,price,category,id,reviews}=filterProucts[0]
+  const {imgUrl,avgRating,description,productName,price,category,id,reviews,
+    displaySize,
+    weights,
+    chipSet,
+    cpu,
+    gpu,
+    storage,
+    selfieCamera,
+    mainCamera,
+    ultraWide,
+    telePhoto,
+    battery
+  }=filterProucts[0]
   const categories=[
     {value:'trend',label:'Trend'},
     {value:'best-sales',label:'Best Sales'},
@@ -82,7 +94,23 @@ export default function ProuductDetails() {
             </Col>
             <Col lg='6' md='6'>
               <h3 className='product_details_name'>{productName}</h3>
-              <p className='product_details_desc'>{description}</p>
+              <ul style={{listStyleType:'circle'}}>
+              <li style={{color:'black',fontWeight:'bold'}}>Display Size : {displaySize}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>Phone Weight : {weights}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>Processor Chipset : {chipSet}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>Processor CPU : {cpu}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>Processor GPU : {gpu}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>Memory Storage : {storage}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>Front Camera : {selfieCamera}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>Main Camera : {mainCamera}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>UltraWide Camera : {ultraWide}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>TelePhoto Camera : {telePhoto}</li>
+              <li style={{color:'black',fontWeight:'bold'}}>Battery Capacity : {battery}</li>
+              </ul>
+              {/* <p className='product_details_desc'>{description}</p> */}
+              
+
+
               <h4 className='product_details_price'>{price+' $'}</h4>
               <motion.button whileTap={{scale:1.2}} className='product_details_button' onClick={()=>addToCart()}><i class="bi bi-cart-plus-fill" style={{fontSize:'30px'}}></i></motion.button>
             </Col>
